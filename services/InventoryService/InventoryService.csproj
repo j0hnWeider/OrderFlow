@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.14.1" />
+    <PackageReference Include="Amazon.Extensions.NETCore.Setup" Version="3.7.0" />
+    <PackageReference Include="AWSSDK.SQS" Version="3.7.0.30" />
+  </ItemGroup>
+
+</Project>
