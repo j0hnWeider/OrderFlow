@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  authservice:
+    build:
+      context: ../services/AuthService
+      dockerfile: Dockerfile
+    ports:
+      - "5001:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on: []
+
+  orderservice:
+    build:
+      context: ../services/OrderService
+      dockerfile: Dockerfile
+    ports:
+      - "5002:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on: []
+
+  inventoryservice:
+    build:
+      context: ../services/InventoryService
+      dockerfile: Dockerfile
+    ports:
+      - "5003:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on: []
+
+  paymentservice:
+    build:
+      context: ../services/PaymentService
+      dockerfile: Dockerfile
+    ports:
+      - "5004:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on: []
+
+  notificationservice:
+    build:
+      context: ../services/NotificationService
+      dockerfile: Dockerfile
+    ports:
+      - "5005:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on: []
+
+  gatewayapi:
+    build:
+      context: ../services/GatewayAPI
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - authservice
+      - orderservice
+      - inventoryservice
+      - paymentservice
+      - notificationservice
+
+networks:
+  default:
+    driver: bridge

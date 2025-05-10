@@ -1,0 +1,95 @@
+services:
+  AuthService:
+    image: orderflow-authservice
+    build:
+      context: ../services/AuthService
+      dockerfile: Dockerfile
+    ports:
+      - "5001:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__Postgres=Host=postgres;Database=authdb;Username=admin;Password=password
+      - RabbitMQ__HostName=rabbitmq
+      - Redis__Configuration=redis:6379
+    depends_on:
+      - postgres
+      - rabbitmq
+      - redis
+
+  OrderService:
+    image: orderflow-orderservice
+    build:
+      context: ../services/OrderService
+      dockerfile: Dockerfile
+    ports:
+      - "5002:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__Postgres=Host=postgres;Database=orderdb;Username=admin;Password=password
+      - RabbitMQ__HostName=rabbitmq
+      - Redis__Configuration=redis:6379
+    depends_on:
+      - postgres
+      - rabbitmq
+      - redis
+
+  InventoryService:
+    image: orderflow-inventoryservice
+    build:
+      context: ../services/InventoryService
+      dockerfile: Dockerfile
+    ports:
+      - "5003:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__Postgres=Host=postgres;Database=inventorydb;Username=admin;Password=password
+      - RabbitMQ__HostName=rabbitmq
+      - Redis__Configuration=redis:6379
+    depends_on:
+      - postgres
+      - rabbitmq
+      - redis
+
+  PaymentService:
+    image: orderflow-paymentservice
+    build:
+      context: ../services/PaymentService
+      dockerfile: Dockerfile
+    ports:
+      - "5004:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__Postgres=Host=postgres;Database=paymentdb;Username=admin;Password=password
+      - RabbitMQ__HostName=rabbitmq
+      - Redis__Configuration=redis:6379
+    depends_on:
+      - postgres
+      - rabbitmq
+      - redis
+
+  NotificationService:
+    image: orderflow-notificationservice
+    build:
+      context: ../services/NotificationService
+      dockerfile: Dockerfile
+    ports:
+      - "5005:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RabbitMQ__HostName=rabbitmq
+    depends_on:
+      - rabbitmq
+
+  GatewayAPI:
+    image: orderflow-gatewayapi
+    build:
+      context: ../services/GatewayAPI
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    depends_on:
+      - AuthService
+      - OrderService
+      - InventoryService
+      - PaymentService
+      - NotificationService
