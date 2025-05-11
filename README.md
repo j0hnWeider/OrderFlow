@@ -44,15 +44,14 @@ O **GatewayAPI** foi aprimorado com as seguintes funcionalidades:
 ### 3. **Cache**
 - Integração com **Redis** para cache de respostas.
 - Configuração do Redis:
-  - Host: `localhost`
-  - Porta: `6379`
-  - Instância: `GatewayCache`
+  - Host: `localhost` (em produção, configure via variáveis de ambiente).
+  - Porta: `6379` (em produção, configure via variáveis de ambiente).
 
 ### 4. **Health Checks**
 - Verificação de saúde configurada para:
   - **Redis** (cache).
-  - Serviços downstream (URLs configuradas).
-- Endpoint de Health Check: `/health`.
+  - Serviços downstream (URLs configuradas via variáveis de ambiente).
+- Endpoint de Health Check: `/health` (recomenda-se proteger este endpoint em produção).
 
 ### 5. **CORS**
 - Configurado para permitir requisições de qualquer origem.
@@ -73,7 +72,7 @@ O **GatewayAPI** foi aprimorado com as seguintes funcionalidades:
 
 ### Pré-requisitos
 - **.NET 6 SDK** instalado.
-- **Redis** em execução no endereço `localhost:6379`.
+- **Redis** em execução no endereço configurado via variáveis de ambiente.
 - Servidor de autenticação configurado (substituir `https://your-auth-server` no código pelo endereço correto).
 
 ### Passos
@@ -82,16 +81,18 @@ O **GatewayAPI** foi aprimorado com as seguintes funcionalidades:
    git clone https://github.com/j0hnWeider/OrderFlow.git
    cd OrderFlow/services/GatewayAPI
 
-Restaure as dependências:
+2. Restaure as dependências:
 `dotnet restore`
-Execute o projeto:
+3. Execute o projeto:
 `dotnet run`
 Acesse os endpoints: <vscode_annotation details='%5B%7B%22title%22%3A%22hardcoded-credentials%22%2C%22description%22%3A%22Embedding%20credentials%20in%20source%20code%20risks%20unauthorized%20access%22%7D%5D'> -</vscode_annotation> Swagger UI: http://localhost:5000/swagger
 
+Acesse os endpoints:
+
+Swagger UI: http://localhost:5000/swagger
 Health Check: http://localhost:5000/health
 Configuração do Ocelot
-O arquivo ocelot.json contém as configurações de roteamento, cache e rate limiting. Exemplo de configuração:
-```bash
+O arquivo ocelot.json contém as configurações de roteamento, cache e rate limiting. Exemplo de configuração (substitua valores sensíveis por variáveis de ambiente):
 {
   "Routes": [
     {
@@ -120,4 +121,5 @@ CI/CD
 Pipeline automatizado via GitHub Actions para build e testes.
 
 © 2024 John Weider. Todos os direitos reservados. Uso proibido sem autorização expressa.
+
 
