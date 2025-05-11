@@ -91,7 +91,8 @@ Acesse os endpoints: <vscode_annotation details='%5B%7B%22title%22%3A%22hardcode
 Health Check: http://localhost:5000/health
 Configuração do Ocelot
 O arquivo ocelot.json contém as configurações de roteamento, cache e rate limiting. Exemplo de configuração:
-`{
+```bash
+{
   "Routes": [
     {
       "DownstreamPathTemplate": "/api/orders",
@@ -112,9 +113,10 @@ O arquivo ocelot.json contém as configurações de roteamento, cache e rate lim
       "QuotaExceededMessage": "Too many requests. Please try again later."
     }
   }
-}`
+}
 
 CI/CD
+
 Pipeline automatizado via GitHub Actions para build e testes.
 
 © 2024 John Weider. Todos os direitos reservados. Uso proibido sem autorização expressa.
