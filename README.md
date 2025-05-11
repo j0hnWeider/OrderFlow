@@ -3,7 +3,10 @@
 Sistema de gerenciamento de pedidos distribuído baseado em microsserviços, construído com .NET Core, mensageria, bancos de dados distribuídos, observabilidade e arquitetura moderna.
 
 Este projeto começou como um estudo e aprimoramento de habilidades em arquitetura de microsserviços e tecnologias modernas, mas acabou tomando uma proporção muito maior, tornando-se um sistema completo e funcional.
+CI/CD
+Pipeline automatizado via GitHub Actions para build e testes.
 
+© 2024 John Weider. Todos os direitos reservados. Uso proibido sem autorização expressa.
 ---
 
 ## Tecnologias principais
