@@ -93,6 +93,7 @@ Swagger UI: http://localhost:5000/swagger
 Health Check: http://localhost:5000/health
 Configuração do Ocelot
 O arquivo ocelot.json contém as configurações de roteamento, cache e rate limiting. Exemplo de configuração (substitua valores sensíveis por variáveis de ambiente):
+```bash
 {
   "Routes": [
     {
@@ -115,11 +116,4 @@ O arquivo ocelot.json contém as configurações de roteamento, cache e rate lim
     }
   }
 }
-
-CI/CD
-
-Pipeline automatizado via GitHub Actions para build e testes.
-
-© 2024 John Weider. Todos os direitos reservados. Uso proibido sem autorização expressa.
-
 
